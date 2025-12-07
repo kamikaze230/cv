@@ -38,6 +38,7 @@ const cvData = {
             title: "Projet d'Échange d'adolescents",
             description: "Un projet Java permettant de créer des duos basés sur des caractéristiques qui nous a introduit les bases de l'IHM.",
             technologies: ["Java", "IHM"],
+            image: "images/Gest-ado.png",
             codeUrl: "https://github.com/kamikaze230/gestion-Adolescent"
         }
     ],
