@@ -89,11 +89,7 @@ function loadCVData() {
         let contactHTML = '<div class="contact-info">';
         
         if (cvData.personal.email) {
-            contactHTML += `<p class="contact-item"><strong>Email :</strong> <a href="mailto:${cvData.personal.email}" class="contact-link">${cvData.personal.email}</a></p>`;
-        }
-        
-        if (cvData.personal.address) {
-            contactHTML += `<p class="contact-item"><strong>Adresse :</strong> ${cvData.personal.address}</p>`;
+            contactHTML += `<p class="contact-item"><strong>Contactez-moi sur mes réseaux</strong></p>`;
         }
         
         contactHTML += '</div>';

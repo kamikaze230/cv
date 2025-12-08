@@ -7,8 +7,7 @@ const cvData = {
         address: "887 avenue de dunkerque batiment E3 appartement 311",
         phone: "",
         github: "https://github.com/kamikaze230",
-        linkedin: "https://linkedin.com/in/",
-        dribbble: "",
+        linkedin: "https://www.linkedin.com/in/tristan-roman-gouin-7311a536b/",
         behance: ""
     },
     about: "Étudiant en BUT Informatique, passionné par le développement (Java, Python, SQL), motivé à appliquer mes compétences dans des projets concrets et collaboratifs.",
