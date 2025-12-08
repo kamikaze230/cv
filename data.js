@@ -4,9 +4,10 @@ const cvData = {
         name: "Tristan Roman--Gouin",
         title: "Informaticien",
         email: "romangouintristan@gmail.com",
-        phone: "06 66 08 00 71",
         address: "887 avenue de dunkerque batiment E3 appartement 311",
-        linkedin: "",
+        phone: "",
+        github: "https://github.com/kamikaze230",
+        linkedin: "https://linkedin.com/in/",
         dribbble: "",
         behance: ""
     },

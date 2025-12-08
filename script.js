@@ -88,10 +88,6 @@ function loadCVData() {
     if (contactContent && cvData.personal) {
         let contactHTML = '<div class="contact-info">';
         
-        if (cvData.personal.phone) {
-            contactHTML += `<p class="contact-item"><strong>Téléphone :</strong> <a href="tel:${cvData.personal.phone.replace(/\s/g, '')}">${cvData.personal.phone}</a></p>`;
-        }
-        
         if (cvData.personal.email) {
             contactHTML += `<p class="contact-item"><strong>Email :</strong> <a href="mailto:${cvData.personal.email}" class="contact-link">${cvData.personal.email}</a></p>`;
         }
@@ -102,7 +98,24 @@ function loadCVData() {
         
         contactHTML += '</div>';
         
-        contactContent.innerHTML = contactHTML;
+        // Add social links with logos
+        let logosHTML = '<div class="contact-links">';
+        
+        if (cvData.personal.github) {
+            logosHTML += `<a href="${cvData.personal.github}" target="_blank" rel="noopener noreferrer" class="contact-logo" title="GitHub"><img src="images/github.png" alt="GitHub" class="logo-icon"></a>`;
+        }
+        
+        if (cvData.personal.email) {
+            logosHTML += `<a href="mailto:${cvData.personal.email}" class="contact-logo" title="Gmail"><img src="images/gmail.png" alt="Gmail" class="logo-icon"></a>`;
+        }
+        
+        if (cvData.personal.linkedin) {
+            logosHTML += `<a href="${cvData.personal.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-logo" title="LinkedIn"><img src="images/linkedin.png" alt="LinkedIn" class="logo-icon"></a>`;
+        }
+        
+        logosHTML += '</div>';
+        
+        contactContent.innerHTML = contactHTML + logosHTML;
     }
 
     // Update footer clients
