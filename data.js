@@ -62,6 +62,10 @@ const cvData = {
         "Gestion de projet": [
             "Gestion de projet avec Scrum",
             "Utilisation de Git"
+        ],
+        "Savoir-être": [
+            "Patience",
+            "Rigueur"
         ]
     },
     
