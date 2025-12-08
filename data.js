@@ -36,10 +36,17 @@ const cvData = {
         },
         {
             title: "Projet d'Échange d'adolescents",
-            description: "Un projet Java permettant de créer des duos basés sur des caractéristiques qui nous a introduit les bases de l'IHM.",
+            description: "Projet visant à lier deux étudiants de différentes écoles en fonction de critères tels que l'alimentation, les loisirs, etc. L'objectif est de favoriser les échanges en tenant compte des préférences et habitudes de chacun.",
             technologies: ["Java", "IHM"],
             image: "images/Gest-ado.png",
             codeUrl: "https://github.com/kamikaze230/gestion-Adolescent"
+        },
+        {
+            title: "SAÉ2.04",
+            description: "Projet de base de données réalisé dans le cadre du cursus BUT Informatique, mettant en pratique les concepts de modélisation et de gestion de données.",
+            technologies: ["Base de données", "SQL"],
+            image: "images/Olympic_flag.png",
+            codeUrl: "https://github.com/kamikaze230/SA-2.04"
         }
     ],
     
