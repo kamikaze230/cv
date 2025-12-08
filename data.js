@@ -48,6 +48,7 @@ const cvData = {
             "Java",
             "JavaScript",
             "Python",
+            "C",
             "SQL",
             "HTML/CSS"
         ],
