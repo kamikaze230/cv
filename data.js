@@ -10,7 +10,7 @@ const cvData = {
         linkedin: "https://www.linkedin.com/in/tristan-roman-gouin-7311a536b/",
         behance: ""
     },
-    about: "Étudiant en BUT Informatique, passionné par le développement (Java, Python, SQL), motivé à appliquer mes compétences dans des projets concrets et collaboratifs.",
+    about: "Étudiant en BUT Informatique, passionné par le développement (Java, Python, C), motivé à appliquer mes compétences dans des projets concrets et collaboratifs.",
     
     projects: [
         {
@@ -18,7 +18,7 @@ const cvData = {
             description: "Un projet de construction d'un labyrinthe en Java pour apprendre les principes SOLID et utiliser des patrons de conception.",
             technologies: ["Java", "SOLID", "Patrons de conception", "IHM"],
             languages: ["Java"],
-            timeTaken: "2 semaines",
+            timeTaken: "1 mois et demi",
             slug: "mazeio",
             context: "Projet nous demandant de créer un labyrinthe fonctionnel implémentant différentes fonctionnalités demandées. Le projet demandait également d'ajouter des éléments originaux supplémentaires.",
             image: "images/Mazeio.png",
@@ -40,7 +40,7 @@ const cvData = {
             description: "Projet personnel fait pour comprendre l'utilisation de l'API de Discord tout en gardant une base solide en Python.",
             technologies: ["Python", "Discord API"],
             languages: ["Python"],
-            timeTaken: "1 semaine (évolutif)",
+            timeTaken: "~2 semaine",
             slug: "kamibot",
             context: "Bot Discord développé pour explorer l’API (intents, commandes, événements) et structurer une base Python prête pour des fonctionnalités de modération et d’automatisation. Disclaimer : le code du projet n'a pas pour but d'être utilisé et donc est mal structuré.",
             image: "images/KamiBot.png",
@@ -51,7 +51,7 @@ const cvData = {
             description: "Projet ayant pour but principal de nous apprendre l'IHM avec du javafx.",
             technologies: ["Java", "IHM"],
             languages: ["Java"],
-            timeTaken: "2 semaines",
+            timeTaken: "1 mois",
             slug: "projet-echange-adolescents",
             context: "Projet visant à lier deux étudiants de différentes écoles en fonction de critères tels que l'alimentation, les loisirs, etc. L'objectif est de favoriser les échanges en tenant compte des préférences et habitudes de chacun.",
             image: "images/Gest-ado.png",
