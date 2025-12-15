@@ -50,8 +50,12 @@ function loadCVData() {
                 <div class="work-item-content">
                     <h3 class="work-title">${project.title}</h3>
                     <p class="work-description">${project.description}</p>
+                    ${project.timeTaken ? `<p class="work-meta"><strong>Durée :</strong> ${project.timeTaken}</p>` : ''}
+                    ${project.languages ? `<p class="work-meta"><strong>Langages :</strong> ${Array.isArray(project.languages) ? project.languages.join(', ') : project.languages}</p>` : ''}
                     ${project.technologies ? `<p class="work-tech"><strong>Technologies :</strong> ${project.technologies.join(', ')}</p>` : ''}
-                    ${project.codeUrl ? `<a href="${project.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-code">Voir le code</a>` : ''}
+                    <div class="work-actions">
+                        ${project.slug ? `<a href="project.html?project=${project.slug}" class="btn-code">Voir le projet</a>` : ''}
+                    </div>
                 </div>
             </div>
         `).join('');
@@ -179,12 +183,67 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof cvData !== 'undefined') {
             // Update projects, skills, education tabs content
             loadCVData();
+            renderProjectDetailPage();
         }
         initializeAnimations();
         // Initialize tabs functionality after a small delay to ensure DOM is ready
         initializeTabs();
     }, 150);
 });
+
+// Render a dedicated project detail page when the container is present
+function renderProjectDetailPage() {
+    const detailContainer = document.querySelector('#project-detail');
+    if (!detailContainer || typeof cvData === 'undefined') return;
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('project');
+
+    if (!slug) {
+        detailContainer.innerHTML = '<p class="work-description">Projet introuvable. Revenez à la liste pour sélectionner un projet.</p>';
+        return;
+    }
+
+    const project = cvData.projects.find(p => p.slug === slug);
+    if (!project) {
+        detailContainer.innerHTML = '<p class="work-description">Ce projet n\'existe pas. Revenez à la liste pour sélectionner un projet valide.</p>';
+        return;
+    }
+
+    const languagesText = project.languages
+        ? (Array.isArray(project.languages) ? project.languages.join(', ') : project.languages)
+        : 'Non renseigné';
+    const technologiesText = project.technologies && project.technologies.length
+        ? project.technologies.map(tech => `<span class="tag">${tech}</span>`).join('')
+        : '<span class="tag tag-muted">Aucune technologie listée</span>';
+    const timeTakenText = project.timeTaken || 'Non renseigné';
+    const contextText = project.context || 'Non renseigné';
+
+    detailContainer.innerHTML = `
+        <div class="project-detail-card">
+            ${project.image ? `<div class="project-detail-image"><img src="${project.image}" alt="${project.title}" /></div>` : ''}
+            <div class="project-detail-body">
+                <h1 class="project-detail-title">${project.title}</h1>
+                <p class="project-detail-description">${project.description}</p>
+                <div class="project-context">
+                    <h3 class="project-subtitle">Contexte</h3>
+                    <p>${contextText}</p>
+                </div>
+                <div class="project-meta">
+                    <p class="project-meta-item"><strong>Durée :</strong> ${timeTakenText}</p>
+                    <p class="project-meta-item"><strong>Langages :</strong> ${languagesText}</p>
+                </div>
+                <div class="detail-tags">
+                    ${technologiesText}
+                </div>
+                <div class="project-detail-actions">
+                    ${project.codeUrl ? `<a href="${project.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-code">Voir le code</a>` : `<span class="work-meta">Code non disponible</span>`}
+                    <a href="index.html#portfolio" class="btn-code">Retour au portfolio</a>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
 // Tabs functionality
 function initializeTabs() {
