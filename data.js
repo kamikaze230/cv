@@ -76,17 +76,39 @@ const cvData = {
             timeTaken: "En cours",
             slug: "deploiement-application",
             context: "Déploiement d’une solution Matrix (Synapse + clients) pour des échanges 1:1, groupe ou forum, synchrones et asynchrones, chiffrés de bout en bout et accessibles web/desktop/mobile."
+        },
+        {
+            title: "Shoot'em up TypeScript",
+            description: "Projet en cours",
+            technologies: ["TypeScript", "Canvas", "Jeu 2D"],
+            languages: ["TypeScript"],
+            timeTaken: "En cours",
+            slug: "shoot-em-up-ts",
+            context: "Développement d’un shoot'em up 2D de type Space Invaders en TypeScript en utilisant le canvas HTML pour gérer le rendu et les collisions."
+        },
+        {
+            title: "Ecodrop",
+            description: "Projet en cours",
+            technologies: ["Java EE", "API REST", "Web"],
+            languages: ["Java"],
+            timeTaken: "En cours",
+            slug: "ecodrop",
+            context: "Site web en Java EE exposant une API REST pour gérer des données métier autour d’un projet écoresponsable nommé Ecodrop."
         }
     ],
     
     skills: {
         "Langages de programmation": [
             "Java",
+            "Java EE",
             "JavaScript",
+            "TypeScript",
             "Python",
             "C",
             "SQL",
-            "HTML/CSS"
+            "HTML/CSS",
+            "API REST",
+            "Canvas (HTML5)"
         ],
         "Gestion de projet": [
             "Gestion de projet avec Scrum",
