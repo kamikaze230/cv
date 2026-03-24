@@ -1,20 +1,17 @@
-// Load CV data dynamically
 function loadCVData() {
-    // Wait for data.js to be loaded
     if (typeof cvData === 'undefined') {
-        console.warn('cvData not found. Retrying...');
+        console.warn('cvData introuvable. Nouvelle tentative…');
         setTimeout(loadCVData, 100);
         return;
     }
 
-    // Update name in headline - separate firstname and lastname
     const headlineFirstname = document.querySelector('.headline-firstname');
     const headlineLastname = document.querySelector('.headline-lastname');
     if (cvData.personal.name) {
         const nameParts = cvData.personal.name.split(' ');
-        const firstname = nameParts[0]; // "Tristan"
-        const lastname = nameParts.slice(1).join(' '); // "Roman--Gouin"
-        
+        const firstname = nameParts[0];
+        const lastname = nameParts.slice(1).join(' ');
+
         if (headlineFirstname) {
             headlineFirstname.textContent = firstname;
         }
@@ -23,25 +20,21 @@ function loadCVData() {
         }
     }
 
-    // Update subheadline
     const subheadline = document.querySelector('.subheadline');
     if (subheadline && cvData.personal.title) {
         subheadline.textContent = `${cvData.personal.title}, Étudiant en 2e année de BUT Informatique`;
     }
 
-    // Update logo text with initials (T-R-G)
     const logoText = document.querySelector('.logo-text');
     if (logoText) {
         logoText.textContent = 'TRG';
     }
 
-    // Update about section
     const aboutText = document.querySelector('.about-text');
     if (aboutText && cvData.about) {
         aboutText.textContent = cvData.about;
     }
 
-    // Update projects section
     const projectsGrid = document.querySelector('#projects-grid');
     if (projectsGrid && cvData.projects) {
         projectsGrid.innerHTML = cvData.projects.map(project => `
@@ -60,8 +53,7 @@ function loadCVData() {
             </div>
         `).join('');
     }
-    
-    // Update skills section
+
     const skillsGrid = document.querySelector('#skills-grid');
     if (skillsGrid && cvData.skills) {
         skillsGrid.innerHTML = Object.entries(cvData.skills).map(([category, skills]) => `
@@ -73,8 +65,7 @@ function loadCVData() {
             </div>
         `).join('');
     }
-    
-    // Update education section
+
     const educationGrid = document.querySelector('#education-grid');
     if (educationGrid && cvData.education) {
         educationGrid.innerHTML = cvData.education.map(edu => `
@@ -86,56 +77,49 @@ function loadCVData() {
         `).join('');
     }
 
-
-    // Update contact section
     const contactContent = document.querySelector('.contact-content');
     if (contactContent && cvData.personal) {
         let contactHTML = '<div class="contact-info">';
-        
+
         if (cvData.personal.email) {
             contactHTML += `<p class="contact-item"><strong>Contactez-moi sur mes réseaux</strong></p>`;
         }
-        
+
         contactHTML += '</div>';
-        
-        // Add social links with logos
+
         let logosHTML = '<div class="contact-links">';
-        
+
         if (cvData.personal.github) {
             logosHTML += `<a href="${cvData.personal.github}" target="_blank" rel="noopener noreferrer" class="contact-logo" title="GitHub"><img src="public/images/github.png" alt="GitHub" class="logo-icon"></a>`;
         }
-        
+
         if (cvData.personal.email) {
             logosHTML += `<a href="mailto:${cvData.personal.email}" class="contact-logo" title="Gmail"><img src="public/images/gmail.png" alt="Gmail" class="logo-icon"></a>`;
         }
-        
+
         if (cvData.personal.linkedin) {
             logosHTML += `<a href="${cvData.personal.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-logo" title="LinkedIn"><img src="public/images/linkedin.png" alt="LinkedIn" class="logo-icon"></a>`;
         }
-        
+
         logosHTML += '</div>';
-        
+
         contactContent.innerHTML = contactHTML + logosHTML;
     }
 
-    // Update footer clients
     const clients = document.querySelector('.clients');
     if (clients && cvData.clients && cvData.clients.length > 0) {
-        clients.innerHTML = cvData.clients.map(client => 
+        clients.innerHTML = cvData.clients.map(client =>
             `<span class="client-name">${client.toUpperCase()}</span>`
         ).join('');
     } else if (clients) {
-        // Masquer le footer si pas de clients
         clients.parentElement.parentElement.style.display = 'none';
     }
 }
 
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     loadCVData();
     initializeContactMailtoForm();
-    
-    // Smooth scroll for navigation links
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -149,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Get in touch button scroll to contact
     const btnPrimary = document.querySelector('.btn-primary');
     if (btnPrimary) {
         btnPrimary.addEventListener('click', function() {
@@ -163,11 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Download Resume button
     const btnResume = document.querySelector('.btn-resume');
     if (btnResume) {
         btnResume.addEventListener('click', function() {
-            // Chemin vers le CV PDF
             const resumePath = 'public/CV Tristan Roman-Gouin.pdf';
             const link = document.createElement('a');
             link.href = resumePath;
@@ -177,17 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.removeChild(link);
         });
     }
-    
-    // Load data first, then initialize tabs
+
     setTimeout(() => {
-        // Ensure data is loaded
         if (typeof cvData !== 'undefined') {
-            // Update projects, skills, education tabs content
             loadCVData();
             renderProjectDetailPage();
         }
         initializeAnimations();
-        // Initialize tabs functionality after a small delay to ensure DOM is ready
         initializeTabs();
     }, 150);
 });
@@ -213,19 +190,16 @@ function initializeContactMailtoForm() {
             `Message pour : ${recipientEmail}`,
             '',
             `Nom : ${name}`,
-            `Email du contact (à utiliser pour répondre) : ${email}`,
+            `Email : ${email}`,
             '',
             message
         ].join('\n');
 
-        // Note : le champ "De" du client mail reste toujours le compte connecté de l'expéditeur.
-        // On met l'email saisi en Cc pour qu'il apparaisse dans les en-têtes (sans changer "De").
         const mailtoUrl = `mailto:${recipientEmail}?cc=${encodeURIComponent(email)}&subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailtoUrl;
     });
 }
 
-// Render a dedicated project detail page when the container is present
 function renderProjectDetailPage() {
     const detailContainer = document.querySelector('#project-detail');
     if (!detailContainer || typeof cvData === 'undefined') return;
@@ -279,49 +253,41 @@ function renderProjectDetailPage() {
     `;
 }
 
-// Tabs functionality
 function initializeTabs() {
     const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
+
     if (tabButtons.length === 0) {
-        console.warn('Tab buttons not found');
+        console.warn('Boutons d’onglets introuvables.');
         return;
     }
-    
+
     tabButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             const targetTab = this.getAttribute('data-tab');
             if (!targetTab) return;
-            
-            // Remove active class from all buttons and contents
+
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
             });
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
-            
-            // Add active class to clicked button
+
             this.classList.add('active');
-            
-            // Show corresponding content
+
             const targetContent = document.getElementById(`${targetTab}-content`);
             if (targetContent) {
                 targetContent.classList.add('active');
             } else {
-                console.warn(`Content for tab ${targetTab} not found`);
+                console.warn(`Contenu d’onglet introuvable : ${targetTab}`);
             }
         });
     });
-    
-    console.log(`Initialized ${tabButtons.length} tab buttons`);
 }
 
-// Header scroll effect
 const header = document.querySelector('.header');
 
 window.addEventListener('scroll', () => {
@@ -335,7 +301,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Fade in animation on scroll
 function initializeAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -358,4 +323,3 @@ function initializeAnimations() {
         observer.observe(section);
     });
 }
-

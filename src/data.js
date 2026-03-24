@@ -1,4 +1,3 @@
-// Données du CV - Tristan Roman--Gouin
 const cvData = {
     personal: {
         name: "Tristan Roman--Gouin",
