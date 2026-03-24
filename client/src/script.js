@@ -210,15 +210,17 @@ function initializeContactMailtoForm() {
 
         const finalSubject = subject || 'Prise de contact';
         const body = [
-            `À : ${recipientEmail}`,
-            `De (coordonnées laissées par l'expéditeur) :`,
+            `Message pour : ${recipientEmail}`,
+            '',
             `Nom : ${name}`,
-            `Email : ${email}`,
+            `Email du contact (à utiliser pour répondre) : ${email}`,
             '',
             message
         ].join('\n');
 
-        const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(body)}`;
+        // Note : le champ "De" du client mail reste toujours le compte connecté de l'expéditeur.
+        // On met l'email saisi en Cc pour qu'il apparaisse dans les en-têtes (sans changer "De").
+        const mailtoUrl = `mailto:${recipientEmail}?cc=${encodeURIComponent(email)}&subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailtoUrl;
     });
 }
