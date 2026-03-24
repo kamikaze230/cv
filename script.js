@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnResume) {
         btnResume.addEventListener('click', function() {
             // Chemin vers le CV PDF
-            const resumePath = 'Minimalist CV Resume.pdf';
+            const resumePath = 'CV Tristan Roman-Gouin.pdf';
             const link = document.createElement('a');
             link.href = resumePath;
             link.download = 'CV.pdf';
