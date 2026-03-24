@@ -26,7 +26,7 @@ function loadCVData() {
     // Update subheadline
     const subheadline = document.querySelector('.subheadline');
     if (subheadline && cvData.personal.title) {
-        subheadline.textContent = `${cvData.personal.title} — Étudiant en 2e année de BUT Informatique`;
+        subheadline.textContent = `${cvData.personal.title}, Étudiant en 2e année de BUT Informatique`;
     }
 
     // Update logo text with initials (T-R-G)
