@@ -133,6 +133,7 @@ function loadCVData() {
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     loadCVData();
+    initializeContactMailtoForm();
     
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -190,6 +191,33 @@ document.addEventListener('DOMContentLoaded', () => {
         initializeTabs();
     }, 150);
 });
+
+function initializeContactMailtoForm() {
+    const form = document.getElementById('contact-mailto-form');
+    if (!form || typeof cvData === 'undefined' || !cvData.personal || !cvData.personal.email) {
+        return;
+    }
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById('contact-name')?.value?.trim() || '';
+        const email = document.getElementById('contact-email')?.value?.trim() || '';
+        const subject = document.getElementById('contact-subject')?.value?.trim() || '';
+        const message = document.getElementById('contact-message')?.value?.trim() || '';
+
+        const finalSubject = subject || 'Prise de contact';
+        const body = [
+            `Nom: ${name}`,
+            `Email: ${email}`,
+            '',
+            message
+        ].join('\n');
+
+        const mailtoUrl = `mailto:${cvData.personal.email}?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoUrl;
+    });
+}
 
 // Render a dedicated project detail page when the container is present
 function renderProjectDetailPage() {

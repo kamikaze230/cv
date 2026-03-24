@@ -21,7 +21,7 @@ const cvData = {
             timeTaken: "1 mois et demi",
             slug: "mazeio",
             context: "Projet nous demandant de créer un labyrinthe fonctionnel implémentant différentes fonctionnalités demandées. Le projet demandait également d'ajouter des éléments originaux supplémentaires.",
-            image: "images/Mazeio.png",
+            image: "public/images/Mazeio.png",
             codeUrl: "https://github.com/kamikaze230/Mazeio"
         },
         {
@@ -32,7 +32,7 @@ const cvData = {
             timeTaken: "3 jours",
             slug: "sirtet",
             context: "Projet créé durant la première semaine de ma deuxième année de BUT. La seule consigne était de créer un jeu en utilisant la méthodologie agile.",
-            image: "images/Sirtet.png",
+            image: "public/images/Sirtet.png",
             codeUrl: "https://github.com/kamikaze230/Sirtet"
         },
         {
@@ -43,7 +43,7 @@ const cvData = {
             timeTaken: "~2 semaine",
             slug: "kamibot",
             context: "Bot Discord développé pour explorer l’API (intents, commandes, événements) et structurer une base Python prête pour des fonctionnalités de modération et d’automatisation. Disclaimer : le code du projet n'a pas pour but d'être utilisé et donc est mal structuré.",
-            image: "images/KamiBot.png",
+            image: "public/images/KamiBot.png",
             codeUrl: "https://github.com/kamikaze230/KamiBot"
         },
         {
@@ -54,7 +54,7 @@ const cvData = {
             timeTaken: "1 mois",
             slug: "projet-echange-adolescents",
             context: "Projet visant à lier deux étudiants de différentes écoles en fonction de critères tels que l'alimentation, les loisirs, etc. L'objectif est de favoriser les échanges en tenant compte des préférences et habitudes de chacun.",
-            image: "images/Gest-ado.png",
+            image: "public/images/Gest-ado.png",
             codeUrl: "https://github.com/kamikaze230/gestion-Adolescent"
         },
         {
@@ -65,7 +65,7 @@ const cvData = {
             timeTaken: "3 semaines",
             slug: "sae-2-04",
             context: "Projet consistant à récupérer des données dans une base PostgreSQL et à en faire une analyse. Notre base des donnée se centrait sur les Jeux Olympiques.",
-            image: "images/Olympic_flag.png",
+            image: "public/images/Olympic_flag.png",
             codeUrl: "https://github.com/kamikaze230/SA-2.04"
         },
         {
