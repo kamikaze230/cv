@@ -198,6 +198,8 @@ function initializeContactMailtoForm() {
         return;
     }
 
+    const recipientEmail = cvData.personal.email;
+
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
@@ -208,13 +210,15 @@ function initializeContactMailtoForm() {
 
         const finalSubject = subject || 'Prise de contact';
         const body = [
-            `Nom: ${name}`,
-            `Email: ${email}`,
+            `À : ${recipientEmail}`,
+            `De (coordonnées laissées par l'expéditeur) :`,
+            `Nom : ${name}`,
+            `Email : ${email}`,
             '',
             message
         ].join('\n');
 
-        const mailtoUrl = `mailto:${cvData.personal.email}?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(body)}`;
+        const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailtoUrl;
     });
 }
