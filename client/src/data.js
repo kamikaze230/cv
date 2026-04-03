@@ -1,7 +1,7 @@
 const cvData = {
     personal: {
         name: "Tristan Roman--Gouin",
-        title: "Informaticien",
+        title: "Développeur",
         email: "romangouintristan@gmail.com",
         address: "887 avenue de dunkerque batiment E3 appartement 311",
         phone: "",
