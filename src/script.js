@@ -1,3 +1,39 @@
+function renderList(items, className = 'detail-list') {
+    if (!items || !items.length) return '<p class="work-meta">Non renseigné</p>';
+    return `<ul class="${className}">${items.map(item => `<li>${item}</li>`).join('')}</ul>`;
+}
+
+function renderIllustrations(items) {
+    if (!items || !items.length) return '<p class="work-meta">Aucune illustration</p>';
+    return `<div class="illustrations-row">
+        ${items.map(item => {
+            if (item.type === 'image' && item.src) {
+                return `<figure class="illustration-thumb">
+                    <img src="${item.src}" alt="${item.label || ''}" />
+                    ${item.label ? `<figcaption>${item.label}</figcaption>` : ''}
+                </figure>`;
+            }
+            if (item.type === 'link' && item.url) {
+                return `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-code">${item.label || 'Voir le lien'}</a>`;
+            }
+            return '';
+        }).join('')}
+    </div>`;
+}
+
+function renderSkillsGrid(skills, groupTitle) {
+    if (!skills || !skills.length) return '';
+    return `
+        <p class="skills-group-title">${groupTitle}</p>
+        ${skills.map(s => `
+            <div class="skill-card">
+                <p class="skill-card-title">${s.name}</p>
+                <p class="skill-card-text">${s.situation}</p>
+            </div>
+        `).join('')}
+    `;
+}
+
 function loadCVData() {
     if (typeof cvData === 'undefined') {
         console.warn('cvData introuvable. Nouvelle tentative…');
@@ -30,9 +66,28 @@ function loadCVData() {
         logoText.textContent = 'TRG';
     }
 
-    const aboutText = document.querySelector('.about-text');
-    if (aboutText && cvData.about) {
-        aboutText.textContent = cvData.about;
+    const presentationContent = document.querySelector('#presentation-content');
+    if (presentationContent && cvData.presentation) {
+        const pres = cvData.presentation;
+        const interestsHtml = (pres.professionalInterests || []).length
+            ? renderList(pres.professionalInterests, 'presentation-highlights')
+            : '';
+        const orient = pres.orientation || {};
+
+        presentationContent.innerHTML = `
+            <div class="presentation-card">
+                <h3 class="presentation-subtitle">Profil</h3>
+                <p class="presentation-text">${pres.profile || ''}</p>
+                <h3 class="presentation-subtitle">Centres d'intérêt professionnels</h3>
+                ${interestsHtml}
+                <h3 class="presentation-subtitle">Orientation</h3>
+                <div class="orientation-grid">
+                    ${orient.internship ? `<p class="presentation-text"><strong>Stage :</strong> ${orient.internship}</p>` : ''}
+                    ${orient.studies ? `<p class="presentation-text"><strong>Poursuite d'études :</strong> ${orient.studies}</p>` : ''}
+                    ${orient.career ? `<p class="presentation-text"><strong>Métier envisagé :</strong> ${orient.career}</p>` : ''}
+                </div>
+            </div>
+        `;
     }
 
     const projectsGrid = document.querySelector('#projects-grid');
@@ -43,9 +98,10 @@ function loadCVData() {
                 <div class="work-item-content">
                     <h3 class="work-title">${project.title}</h3>
                     <p class="work-description">${project.description}</p>
+                    ${project.framework ? `<p class="work-meta"><strong>Cadre :</strong> ${project.framework}</p>` : ''}
+                    ${project.teamMode ? `<p class="work-meta"><strong>Modalité :</strong> ${project.teamMode}</p>` : ''}
+                    ${project.role ? `<p class="work-meta"><strong>Mon rôle :</strong> ${project.role}</p>` : ''}
                     ${project.timeTaken ? `<p class="work-meta"><strong>Durée :</strong> ${project.timeTaken}</p>` : ''}
-                    ${project.languages ? `<p class="work-meta"><strong>Langages :</strong> ${Array.isArray(project.languages) ? project.languages.join(', ') : project.languages}</p>` : ''}
-                    ${project.technologies ? `<p class="work-tech"><strong>Technologies :</strong> ${project.technologies.join(', ')}</p>` : ''}
                     <div class="work-actions">
                         ${project.slug ? `<a href="project.html?project=${project.slug}" class="btn-code">Voir le projet</a>` : ''}
                     </div>
@@ -208,46 +264,119 @@ function renderProjectDetailPage() {
     const slug = params.get('project');
 
     if (!slug) {
-        detailContainer.innerHTML = '<p class="work-description">Projet introuvable. Revenez à la liste pour sélectionner un projet.</p>';
+        detailContainer.innerHTML = '<p class="project-empty">Projet introuvable. <a href="index.html#portfolio">Retour au portfolio</a></p>';
         return;
     }
 
     const project = cvData.projects.find(p => p.slug === slug);
     if (!project) {
-        detailContainer.innerHTML = '<p class="work-description">Ce projet n\'existe pas. Revenez à la liste pour sélectionner un projet valide.</p>';
+        detailContainer.innerHTML = '<p class="project-empty">Ce projet n\'existe pas. <a href="index.html#portfolio">Retour au portfolio</a></p>';
         return;
     }
 
-    const languagesText = project.languages
-        ? (Array.isArray(project.languages) ? project.languages.join(', ') : project.languages)
-        : 'Non renseigné';
-    const technologiesText = project.technologies && project.technologies.length
-        ? project.technologies.map(tech => `<span class="tag">${tech}</span>`).join('')
-        : '<span class="tag tag-muted">Aucune technologie listée</span>';
-    const timeTakenText = project.timeTaken || 'Non renseigné';
-    const contextText = project.context || 'Non renseigné';
+    document.title = `${project.title} - Tristan Roman-Gouin`;
+
+    const tagsHtml = (project.technologies || [])
+        .map(tech => `<span class="project-tag">${tech}</span>`)
+        .join('');
+    const reflection = project.reflection || {};
 
     detailContainer.innerHTML = `
-        <div class="project-detail-card">
-            ${project.image ? `<div class="project-detail-image"><img src="${project.image}" alt="${project.title}" /></div>` : ''}
-            <div class="project-detail-body">
-                <h1 class="project-detail-title">${project.title}</h1>
-                <p class="project-detail-description">${project.description}</p>
-                <div class="project-context">
-                    <h3 class="project-subtitle">Contexte</h3>
-                    <p>${contextText}</p>
+        <div class="project-page">
+            <a href="index.html#portfolio" class="project-back">← Retour au portfolio</a>
+
+            <header class="project-hero">
+                <div class="project-hero-media">
+                    ${project.image
+                        ? `<img src="${project.image}" alt="${project.title}" />`
+                        : '<div class="project-hero-placeholder"></div>'}
                 </div>
-                <div class="project-meta">
-                    <p class="project-meta-item"><strong>Durée :</strong> ${timeTakenText}</p>
-                    <p class="project-meta-item"><strong>Langages :</strong> ${languagesText}</p>
+                <div class="project-hero-content">
+                    ${project.framework ? `<span class="project-framework-badge">${project.framework}</span>` : ''}
+                    <h1 class="project-hero-title">${project.title}</h1>
+                    <p class="project-hero-lead">${project.description}</p>
+                    <div class="project-meta-pills">
+                        ${project.teamMode ? `<span class="meta-pill"><strong>Modalité</strong> ${project.teamMode}</span>` : ''}
+                        ${project.timeTaken ? `<span class="meta-pill"><strong>Durée</strong> ${project.timeTaken}</span>` : ''}
+                    </div>
+                    ${tagsHtml ? `<div class="project-tags">${tagsHtml}</div>` : ''}
+                    <div class="project-hero-actions">
+                        ${project.codeUrl ? `<a href="${project.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-code">Voir le code</a>` : ''}
+                    </div>
                 </div>
-                <div class="detail-tags">
-                    ${technologiesText}
-                </div>
-                <div class="project-detail-actions">
-                    ${project.codeUrl ? `<a href="${project.codeUrl}" target="_blank" rel="noopener noreferrer" class="btn-code">Voir le code</a>` : `<span class="work-meta">Code non disponible</span>`}
-                    <a href="index.html#portfolio" class="btn-code">Retour au portfolio</a>
-                </div>
+            </header>
+
+            <div class="project-sections">
+                <section class="project-panel">
+                    <div class="project-panel-header">
+                        <span class="panel-number">01</span>
+                        <h2 class="project-panel-title">Présentation du projet</h2>
+                    </div>
+                    <div class="project-panel-body">
+                        <div class="project-field">
+                            <h3>Contexte</h3>
+                            <p>${project.context || 'Non renseigné'}</p>
+                        </div>
+                        <div class="project-field-grid">
+                            <div class="project-field">
+                                <h3>Objectifs</h3>
+                                ${renderList(project.objectives, 'project-list')}
+                            </div>
+                            <div class="project-field">
+                                <h3>Résultats obtenus</h3>
+                                ${renderList(project.results, 'project-list')}
+                            </div>
+                        </div>
+                        <div class="project-field">
+                            <h3>Mon rôle</h3>
+                            <p>${project.role || 'Non renseigné'}</p>
+                        </div>
+                        <div class="project-field">
+                            <h3>Illustrations</h3>
+                            ${renderIllustrations(project.illustrations)}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="project-panel">
+                    <div class="project-panel-header">
+                        <span class="panel-number">02</span>
+                        <h2 class="project-panel-title">Compétences mises en avant</h2>
+                    </div>
+                    <div class="project-panel-body">
+                        <div class="skills-grid-page">
+                            ${renderSkillsGrid(project.hardSkills, 'Compétences techniques')}
+                            ${renderSkillsGrid(project.softSkills, 'Compétences transversales')}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="project-panel">
+                    <div class="project-panel-header">
+                        <span class="panel-number">03</span>
+                        <h2 class="project-panel-title">Analyse réflexive</h2>
+                    </div>
+                    <div class="project-panel-body">
+                        <div class="reflection-grid">
+                            <div class="reflection-card">
+                                <h3>Ce que j'ai appris</h3>
+                                <p>${reflection.learned || 'Non renseigné'}</p>
+                            </div>
+                            <div class="reflection-card">
+                                <h3>Difficultés & solutions</h3>
+                                <p>${reflection.difficulties || 'Non renseigné'}</p>
+                            </div>
+                            <div class="reflection-card">
+                                <h3>Compétences développées</h3>
+                                <p>${reflection.skillsDeveloped || 'Non renseigné'}</p>
+                            </div>
+                            <div class="reflection-card">
+                                <h3>À faire différemment</h3>
+                                <p>${reflection.wouldDoDifferently || 'Non renseigné'}</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     `;

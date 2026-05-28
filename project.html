@@ -4,50 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Détails d'un projet du portfolio de Tristan Roman-Gouin.">
-    <title>Détails du projet - Tristan Roman-Gouin</title>
+    <title>Projet - Tristan Roman-Gouin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="public/project.css">
 </head>
-<body>
+<body class="page-project">
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo" aria-label="Accueil">
                 <span class="logo-text">TRG</span>
             </a>
             <nav class="nav" aria-label="Navigation principale">
-                <a href="index.html#about" class="nav-link">À propos</a>
+                <a href="index.html#presentation" class="nav-link">Présentation</a>
                 <a href="index.html#portfolio" class="nav-link">Portfolio</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
         </div>
     </header>
 
-    <main class="main-content">
-        <div class="spotlight"></div>
+    <main class="main-content project-main">
+        <div class="spotlight" aria-hidden="true"></div>
         <div class="container">
-            <section class="section project-detail-section">
-                <h2 class="section-title">Projet</h2>
-                <div id="project-detail" class="project-detail">
-                </div>
-            </section>
+            <div id="project-detail"></div>
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="footer footer-minimal">
         <div class="container">
-            <div class="clients">
-                <span class="client-name">MPL</span>
-                <span class="client-name">HACKERRANK</span>
-                <span class="client-name">NOVA</span>
-                <span class="client-name">RUPEEK</span>
-                <span class="client-name">SHARECHAT</span>
-                <span class="client-name">MPL</span>
-                <span class="client-name">HACKERRANK</span>
-            </div>
+            <p class="footer-note">Portfolio - Tristan Roman--Gouin</p>
         </div>
     </footer>
 
@@ -55,4 +44,3 @@
     <script src="src/script.js"></script>
 </body>
 </html>
-
