@@ -69,7 +69,7 @@ const cvData = {
         },
         {
             title: "Déploiement d’une application",
-            description: "Projet en cours",
+            description: "Projet de création de documentation à l'installation de matrix",
             technologies: ["Matrix", "Synapse", "Clients web/mobile/desktop"],
             languages: ["N/A"],
             timeTaken: "1 mois",
@@ -80,7 +80,7 @@ const cvData = {
         },
         {
             title: "Fold'em up",
-            description: "Projet en cours",
+            description: "Projet TypeScript pour apprendre l'utilisation des canvas HTML",
             technologies: ["TypeScript", "Canvas", "Jeu 2D"],
             languages: ["TypeScript"],
             timeTaken: "2 mois",
@@ -91,12 +91,12 @@ const cvData = {
         },
         {
             title: "Ecodrop",
-            description: "Projet en cours",
+            description: "Projet consistant à créer une API REST et être capable d'intéragir avec ",
             technologies: ["Java EE", "API REST", "Web"],
             languages: ["Java"],
             timeTaken: "2 mois",
             slug: "ecodrop",
-            context: "Projet consistant à créer une API REST et intéragir avec",
+            context: "Développement d'une API REST pour un système de tri de déchets ",
             codeUrl: "https://github.com/kamikaze230/EcoDrop"
         }
     ],
