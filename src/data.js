@@ -74,16 +74,18 @@ const cvData = {
             languages: ["N/A"],
             timeTaken: "En cours",
             slug: "deploiement-application",
-            context: "Déploiement d’une solution Matrix (Synapse + clients) pour des échanges 1:1, groupe ou forum, synchrones et asynchrones, chiffrés de bout en bout et accessibles web/desktop/mobile."
+            context: "Déploiement d’une solution Matrix (Synapse + clients) pour des échanges 1:1, groupe ou forum, synchrones et asynchrones, chiffrés de bout en bout et accessibles web/desktop/mobile.",
+            codeUrl: "https://github.com/kamikaze230/Proc-dures-de-d-ploiement-Matrix"
         },
         {
-            title: "Shoot'em up TypeScript",
+            title: "Faol'em up",
             description: "Projet en cours",
             technologies: ["TypeScript", "Canvas", "Jeu 2D"],
             languages: ["TypeScript"],
             timeTaken: "En cours",
             slug: "shoot-em-up-ts",
-            context: "Développement d’un shoot'em up 2D de type Space Invaders en TypeScript en utilisant le canvas HTML pour gérer le rendu et les collisions."
+            context: "Développement d’un shoot'em up 2D de type Space Invaders en TypeScript en utilisant le canvas HTML pour gérer le rendu et les collisions.",
+            codeUrl: "https://github.com/kamikaze230/fold-emup"
         },
         {
             title: "Ecodrop",
@@ -92,7 +94,8 @@ const cvData = {
             languages: ["Java"],
             timeTaken: "En cours",
             slug: "ecodrop",
-            context: "Site web en Java EE exposant une API REST pour gérer des données métier autour d’un projet écoresponsable nommé Ecodrop."
+            context: "Site web en Java EE exposant une API REST pour gérer des données métier autour d’un projet écoresponsable nommé Ecodrop.",
+            codeUrl: "https://github.com/kamikaze230/EcoDrop"
         }
     ],
     
@@ -100,14 +103,11 @@ const cvData = {
         "Langages de programmation": [
             "Java",
             "Java EE",
-            "JavaScript",
-            "TypeScript",
+            "JavaScript / TypeScript",
             "Python",
             "C",
             "SQL",
             "HTML/CSS",
-            "API REST",
-            "Canvas (HTML5)"
         ],
         "Gestion de projet": [
             "Gestion de projet avec Scrum",
