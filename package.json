@@ -5,7 +5,7 @@
   "description": "CV numerique statique lance avec npm",
   "scripts": {
     "dev": "http-server . -p 5173 -c-1",
-    "start": "npm run dev"
+    "start": "http-server . -p 5173 -c-1"
   },
   "devDependencies": {
     "http-server": "^14.1.1"

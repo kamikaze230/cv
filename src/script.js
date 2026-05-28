@@ -34,9 +34,17 @@ function renderSkillsGrid(skills, groupTitle) {
     `;
 }
 
+let loadCVDataAttempts = 0;
+const LOAD_CV_DATA_MAX_ATTEMPTS = 50;
+
 function loadCVData() {
     if (typeof cvData === 'undefined') {
-        console.warn('cvData introuvable. Nouvelle tentative…');
+        loadCVDataAttempts += 1;
+        if (loadCVDataAttempts >= LOAD_CV_DATA_MAX_ATTEMPTS) {
+            console.error('cvData introuvable : verifiez que src/data.js est charge avant src/script.js.');
+            showDataLoadError();
+            return;
+        }
         setTimeout(loadCVData, 100);
         return;
     }
@@ -386,7 +394,7 @@ function initializeTabs() {
     const tabButtons = document.querySelectorAll('.tab-button');
 
     if (tabButtons.length === 0) {
-        console.warn('Boutons d’onglets introuvables.');
+        console.warn("Boutons d'onglets introuvables.");
         return;
     }
 
@@ -430,25 +438,37 @@ window.addEventListener('scroll', () => {
     }
 });
 
+function showDataLoadError() {
+    const message = '<p class="work-meta">Impossible de charger les donnees du portfolio. Rechargez la page ou verifiez la console du navigateur.</p>';
+    ['#presentation-content', '#projects-grid', '#skills-grid', '#education-grid'].forEach((selector) => {
+        const el = document.querySelector(selector);
+        if (el && !el.innerHTML.trim()) {
+            el.innerHTML = message;
+        }
+    });
+}
+
 function initializeAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    if (!('IntersectionObserver' in window)) {
+        return;
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('section-visible');
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        section.classList.add('section-animate');
         observer.observe(section);
+        requestAnimationFrame(() => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                section.classList.add('section-visible');
+            }
+        });
     });
 }

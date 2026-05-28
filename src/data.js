@@ -1,4 +1,4 @@
-const cvData = {
+var cvData = {
     personal: {
         name: "Tristan Roman--Gouin",
         title: "Développeur",
@@ -374,3 +374,7 @@ const cvData = {
 
     clients: []
 };
+
+if (typeof window !== 'undefined') {
+    window.cvData = cvData;
+}
