@@ -24,6 +24,17 @@ const cvData = {
             codeUrl: "https://github.com/kamikaze230/Mazeio"
         },
         {
+            title: "Fold'em up",
+            description: "Projet TypeScript pour apprendre l'utilisation des canvas HTML",
+            technologies: ["TypeScript", "Canvas", "Jeu 2D"],
+            languages: ["TypeScript"],
+            timeTaken: "2 mois",
+            slug: "shoot-em-up-ts",
+            context: "Développement d’un shoot'em up en 2D (comme Space invaders) en TypeScript en utilisant le canvas HTML pour gérer le rendu et les collisions.",
+            image: "public/images/game_logo.png",
+            codeUrl: "https://github.com/kamikaze230/fold-emup"
+        },
+        {
             title: "Sirtet",
             description: "Un Tetris™ en Java créé en 3 jours utilisant la méthodologie agile.",
             technologies: ["Java", "Agile"],
@@ -57,7 +68,17 @@ const cvData = {
             codeUrl: "https://github.com/kamikaze230/gestion-Adolescent"
         },
         {
-            title: "SAÉ2.04",
+            title: "Ecodrop",
+            description: "Projet consistant à créer une API REST et être capable d'intéragir avec ",
+            technologies: ["Java EE", "API REST", "Web"],
+            languages: ["Java"],
+            timeTaken: "2 mois",
+            slug: "ecodrop",
+            context: "Développement d'une API REST pour un système de tri de déchets ",
+            codeUrl: "https://github.com/kamikaze230/EcoDrop"
+        }
+        {
+            title: "BDD Jeux Olympiques",
             description: "Projet de base de données réalisé dans le cadre du cursus BUT Informatique, mettant en pratique les concepts de modélisation et de gestion de données.",
             technologies: ["Base de données", "SQL"],
             languages: ["SQL"],
@@ -78,27 +99,8 @@ const cvData = {
             image: "public/images/Element.png",
             codeUrl: "https://github.com/kamikaze230/Proc-dures-de-d-ploiement-Matrix"
         },
-        {
-            title: "Fold'em up",
-            description: "Projet TypeScript pour apprendre l'utilisation des canvas HTML",
-            technologies: ["TypeScript", "Canvas", "Jeu 2D"],
-            languages: ["TypeScript"],
-            timeTaken: "2 mois",
-            slug: "shoot-em-up-ts",
-            context: "Développement d’un shoot'em up en 2D (comme Space invaders) en TypeScript en utilisant le canvas HTML pour gérer le rendu et les collisions.",
-            image: "public/images/game_logo.png",
-            codeUrl: "https://github.com/kamikaze230/fold-emup"
-        },
-        {
-            title: "Ecodrop",
-            description: "Projet consistant à créer une API REST et être capable d'intéragir avec ",
-            technologies: ["Java EE", "API REST", "Web"],
-            languages: ["Java"],
-            timeTaken: "2 mois",
-            slug: "ecodrop",
-            context: "Développement d'une API REST pour un système de tri de déchets ",
-            codeUrl: "https://github.com/kamikaze230/EcoDrop"
-        }
+        
+        
     ],
     
     skills: {
