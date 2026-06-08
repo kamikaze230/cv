@@ -333,14 +333,14 @@ var cvData = {
     ],
 
     skills: {
-        "Synthèse technique": [
+        "compétence Technique": [
             "Java / Java EE / API REST",
             "TypeScript / Canvas / Web temps réel",
             "SQL / PostgreSQL",
             "Python",
             "Git / Docker / CI-CD"
         ],
-        "Synthèse transversale": [
+        "Sofyt Skills": [
             "Travail en équipe",
             "Communication technique",
             "Autonomie",
