@@ -340,7 +340,7 @@ var cvData = {
             "Python",
             "Git / Docker / CI-CD"
         ],
-        "Sofyt Skills": [
+        "Soft Skills": [
             "Travail en équipe",
             "Communication technique",
             "Autonomie",
