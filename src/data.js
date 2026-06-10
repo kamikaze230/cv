@@ -333,7 +333,7 @@ var cvData = {
     ],
 
     skills: {
-        "compétence Technique": [
+        "Compétence Technique": [
             "Java / Java EE / API REST",
             "TypeScript / Canvas / Web temps réel",
             "SQL / PostgreSQL",
